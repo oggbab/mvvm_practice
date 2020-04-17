@@ -12,8 +12,6 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = TodoRepository(application)
     val todos : LiveData<List<Todo>>? = repository.getAll()
-    var newTodo : String = ""
-    var checked = false
 
     fun insert(todo: String) {
         repository.insert(Todo(todo))

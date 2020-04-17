@@ -14,7 +14,8 @@ class MainActivity : AppCompatActivity() {
         var viewModel : TodoViewModel = ViewModelProviders.of(this)[TodoViewModel::class.java]
         bind.viewModel = viewModel
         bind.lifecycleOwner = this
-/*
+        bind.model = Todo("It's MVVM !")
+/*웅
         viewModel.getAll()?.observe(this, Observer {
             bind.resultTxt.text = it.toString()
         })
