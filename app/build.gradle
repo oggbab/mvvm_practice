@@ -13,7 +13,6 @@ android {
         versionCode 1
         versionName "1.0"
         project.ext.set("gradle", "WOONG-" + defaultConfig.versionCode)
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,16 +30,22 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-
     implementation deps.kotlin
     implementation deps.app_compat
     implementation deps.constraintlayout
     implementation deps.room_runtime
-    kapt deps.room_compiler
 
+    kapt deps.room_compiler
     implementation deps.lifecycle_viewmodel
     implementation deps.lifecycle_livedata
+    implementation deps.lifecycle_extention
     kapt deps.lifecycle_compiler
+    implementation deps.recyclerview
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.core:core-ktx:1.2.0"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
