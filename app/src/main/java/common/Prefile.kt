@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import android.text.TextUtils
 
-class Prefile {
+open class Prefile {
 
     private lateinit var mFileName : String
     private lateinit var mPreferences: SharedPreferences

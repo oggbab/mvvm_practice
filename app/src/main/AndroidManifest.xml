@@ -9,17 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="basic_test.TestActivity"></activity>
-        <activity android:name="basic_test.SecActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name="basic_test.NotiActivity" />
-        <activity android:name="basic_test.FileActivity">
+        <activity android:name="basic_test.TestUI" />
+        <activity android:name="basic_test.activity.NotiActivity" />
+        <activity android:name="basic_test.activity.FileActivity" />
+        <activity android:name="basic_test.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="basic_test.service.MusicService" android:enabled="true"/>
+        <service android:name="basic_test.service.BoundService" />
+<!--        <receiver android:name="basic_test.recevier.ReceiverTest">
+            <intent-filter>
+                <action android:name="go"/>
+            </intent-filter>
+        </receiver>-->
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
 
 </manifest>

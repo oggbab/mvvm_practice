@@ -1,4 +1,4 @@
-package basic_test
+package basic_test.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.mvvm.R
+import kotlinx.coroutines.channels.consumesAll
 
 class ViewPagerAdapter : PagerAdapter() {
 

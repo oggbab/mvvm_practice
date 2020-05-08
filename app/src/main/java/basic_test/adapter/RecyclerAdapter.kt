@@ -1,11 +1,11 @@
-package basic_test
+package basic_test.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import basic_test.RecyclerAdapter.*
+import basic_test.adapter.RecyclerAdapter.*
 import com.mvvm.R
 
 class RecyclerAdapter : RecyclerView.Adapter<Viewholder>() {

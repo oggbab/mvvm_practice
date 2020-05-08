@@ -1,4 +1,4 @@
-package basic_test
+package basic_test.activity
 
 import android.app.Activity
 import android.app.NotificationChannel
@@ -13,10 +13,12 @@ class NotiActivity : Activity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.noti)
 
-        val bundle = intent.extras as Bundle
-        val id = bundle.getInt("1")
-        val extra = bundle.getString("1")
+        if (savedInstanceState != null) {
+            val bundle = intent.extras as Bundle
+            val id = bundle.getInt("1")
+            val extra = bundle.getString("1")
 
-        noti_tv.text = "id: ${id.toString()} extra: $extra"
+            noti_tv.text = "id: $id extra: $extra"
+        }
     }
 }

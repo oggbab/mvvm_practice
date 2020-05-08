@@ -1,4 +1,4 @@
-package basic_test
+package basic_test.activity
 
 import android.os.Bundle
 import android.text.Editable
@@ -26,20 +26,20 @@ class FileActivity : AppCompatActivity() {
     private fun init() {
         adapter = ArrayAdapter<Any?>(this, android.R.layout.simple_list_item_single_choice, items as List<Any?>)
         listview1.adapter = adapter
-        loadItemsFromFile() ;
-        adapter.notifyDataSetChanged();
+        loadItemsFromFile()
+        adapter.notifyDataSetChanged()
         setView()
     }
 
     private fun setView() {
-        buttonAdd.isEnabled = false; // 초기 버튼 상태 비활성 상태로 지정.
+        buttonAdd.isEnabled = false // 초기 버튼 상태 비활성 상태로 지정.
 
         buttonAdd.setOnClickListener{
             val strNew = editTextNew.text.toString()
-            strNew?.run {
+            strNew.run {
                 items.add(strNew)
                 editTextNew.setText("")
-                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged()
                 saveItemsToFile()
             }
         }
@@ -47,15 +47,15 @@ class FileActivity : AppCompatActivity() {
                 var count = 0
                 var checkedIndex = 0
 
-                count = adapter.count;
+                count = adapter.count
 
-                if (count > 0) {
-                    checkedIndex = listview.checkedItemPosition;
+            if (count > 0) {
+                    checkedIndex = listview.checkedItemPosition
                     if (checkedIndex > -1 && checkedIndex < count) {
-                        items.removeAt(checkedIndex);
-                        listview.clearChoices();
-                        adapter.notifyDataSetChanged();
-                        saveItemsToFile() ;
+                        items.removeAt(checkedIndex)
+                        listview.clearChoices()
+                        adapter.notifyDataSetChanged()
+                        saveItemsToFile()
                     }
                 }
             }
@@ -108,7 +108,7 @@ class FileActivity : AppCompatActivity() {
                 var fr = FileReader(file)
                 val bufrd = BufferedReader(fr)
                 while (bufrd.readLine().also{ str = it } != null) {
-                    items.add(str!!)
+                    items.add(str)
                 }
                 bufrd.close()
                 fr.close()

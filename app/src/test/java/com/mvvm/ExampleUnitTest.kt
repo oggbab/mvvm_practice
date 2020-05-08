@@ -1,5 +1,6 @@
 package com.mvvm
 
+import basic_test.TestActivity
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -14,4 +15,20 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+
+    @Test
+    fun sum() {
+
+//        val p = Person()
+//        when(p)
+
+
+        val result = 4
+        val a = 1
+        val b = 3
+        assertEquals(result, a + b)
+    }
+
+
+    data class Person(val name: String)
 }
