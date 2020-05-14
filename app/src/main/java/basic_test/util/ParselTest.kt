@@ -16,7 +16,7 @@ import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.image_parsel.*
 import java.util.zip.Inflater
 
-class ParcelActivity : AppCompatActivity() {
+class ParcelTwoActivity : AppCompatActivity() {
 
     var isIntent = false
 
@@ -28,14 +28,22 @@ class ParcelActivity : AppCompatActivity() {
             val name = intent.getParcelableArrayListExtra<ParselTest>("list").get(0).name
             tv_parsel.setText(name)
         }
+    }
+}
 
-        if (isIntent) {
-            setParselIntent()
-        }
+
+class ParcelActivity : AppCompatActivity() {
+
+    var isIntent = false
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+        setContentView(R.layout.image_parsel)
+        setParselIntent()
     }
 
     private fun setParselIntent() {
-        var intent = Intent(this, this::class.java)
+        var intent = Intent(this, ParcelTwoActivity::class.java)
         val parselList = arrayListOf<ParselTest>(ParselTest("soon2"), ParselTest("woong"))
         intent.putParcelableArrayListExtra("list", parselList)
         startActivity(intent)

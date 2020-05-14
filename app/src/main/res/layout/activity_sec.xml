@@ -5,7 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="basic_test.SecActivity">
+    >
+    <TextView
+        android:text="asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="21dp"
+        android:textSize="42dp"
+        />
     <Button
         android:id="@+id/btn_back"
         android:layout_width="match_parent"

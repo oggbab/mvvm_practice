@@ -27,8 +27,3 @@ data class Repo(
 data class Repos(
     val current_user_url : String
 )
-
-
-/*
-{"boxOfficeResult":
-    {"boxofficeType":"주말 박스오피스","showRange":"20111230~20120101","yearWeekTime":"201152",*/

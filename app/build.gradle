@@ -30,6 +30,11 @@ android {
         experimental = true
     }
 
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
 }
 
 dependencies {
@@ -46,36 +51,33 @@ dependencies {
     kapt deps.lifecycle_compiler
     implementation deps.recyclerview
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation "androidx.core:core-ktx:1.2.0"
+    implementation deps.viewpager2
+    implementation deps.retrofit
+    implementation deps.gson
+    implementation deps.rxjava2
+    implementation deps.okhttp
+    implementation deps.okhttp_logging
+    implementation deps.volley
+    implementation deps.loggers
+    kapt deps.glide
+    implementation deps.picasso
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    testImplementation deps.junit
+    androidTestImplementation deps.runner
+    androidTestImplementation deps.rules
+    androidTestImplementation deps.espresso
 
 
-    //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    //Dagger2
+    def daggerVer = "2.14.1"
+    //noinspection OutdatedLibrary
+    implementation "com.google.dagger:dagger-android:$daggerVer"
+    implementation "com.google.dagger:dagger-android-support:$daggerVer" // if you use the support libraries
+    kapt "com.google.dagger:dagger-android-processor:$daggerVer"
+    kapt "com.google.dagger:dagger-compiler:$daggerVer"
 
-    // okhttp
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
-
-    //volley
-    implementation 'com.android.volley:volley:1.1.1'
-
-    //Logger
-    implementation 'com.orhanobut:logger:2.2.0'
-
-    //picasso
-    implementation 'com.squareup.picasso:picasso:2.71828'
-
-    //glide
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    kapt 'com.github.bumptech.glide:compiler:4.9.0'
+    //rxjava
+    def rxVer = "2.0.0"
+    implementation "io.reactivex.rxjava2:rxjava:$rxVer"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxVer"
 }

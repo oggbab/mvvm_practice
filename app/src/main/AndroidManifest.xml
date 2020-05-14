@@ -11,6 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name="basic_test.TestUI" />
+        <activity android:name="basic_test.util.ParcelActivity" />
+        <activity android:name="basic_test.util.ParcelTwoActivity" />
         <activity android:name="basic_test.activity.NotiActivity" />
         <activity android:name="basic_test.activity.FileActivity" />
         <activity android:name="basic_test.TestActivity">

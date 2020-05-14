@@ -17,12 +17,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import basic_test.activity.NotiActivity
+import basic_test.adapter.ListViewAdapter
+import basic_test.adapter.ListViewListener
 import basic_test.fragment.*
+import basic_test.image.GlideUtil
+import basic_test.image.PicassoUtil
 import basic_test.library.RetrofitUtil
 import basic_test.receiver.ReceiverTest
+import basic_test.rx.RxJavaUtil
 import basic_test.service.MusicService
 import basic_test.service.ServiceFragment
-import com.bumptech.glide.Glide
+import basic_test.util.ParcelTwoActivity
+import basic_test.util.ParselTest
 import com.mvvm.R
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
@@ -56,7 +62,16 @@ class TestActivity : AppCompatActivity() {
 //        isChangeUsim()
 //        getContacts()
 //        startService()
-        startBroadcastReceiver()
+//        startBroadcastReceiver()
+//        moveAnother()
+        startRxJava()
+    }
+
+    fun moveAnother() {
+        var intent = Intent(this, ParcelTwoActivity::class.java)
+        val parselList = arrayListOf<ParselTest>(ParselTest("soon2"), ParselTest("woong"))
+        intent.putParcelableArrayListExtra("list", parselList)
+        startActivity(intent)
     }
 
     private fun startBroadcastReceiver() {
@@ -98,104 +113,40 @@ class TestActivity : AppCompatActivity() {
         }
     }
 
-
+    private fun startRxJava() {
+//        RxJavaUtil().test()
+    }
 
     private fun startService() {
         replaceFragment(ServiceFragment())
     }
 
-    private fun getContacts() {
-
-/*        val c =  contentResolver.query(
-            ContactsContract.CommonDataKinds
-                .Phone.CONTENT_URI,  // 조회할 컬럼명
-            null, // 조회할 컬럼명
-            null, // 조건 절
-            null, // 조건절의 파라미터
-            null);// 정렬 방향
-
-        var str = ""; // 출력할 내용을 저장할 변수
-        c?.moveToFirst(); // 커서를 처음위치로 이동시킴
-        do {
-            val name = c?.getString(c?.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
-            val phoneNumbermoveToFirst) {
-                = c?    addFra.getString(c?.get
-                    ColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-            str += "이름 : $name 폰번호 : $phoneNumber $\n"
-        } while (c?.moveToNext()!!);//데이터가 없을 때까지반복
-        textView2.setText(str);
-    */
-    }
-
-    private fun isChangeUsim() {
-
-
-        val observer: ContentObserver =
-            object : ContentObserver(Handler()) {
-                override fun onChange(
-                    selfChange: Boolean,
-                    uri: Uri
-                ) {
-                    super.onChange(selfChange, uri)
-                    Logger.e("Usim Chainge : onChange")
-                    }
-                }
-    val AUTHORITY = "${this.packageName}.usim"
-    val CONTENTS_URI = Uri.parse("content://$AUTHORITY/")
-        contentResolver.registerContentObserver(CONTENTS_URI,true, observer)
-    }
-
     private fun setGlide() {
-        val url = "https://i.imgur.com/DvpvklR.jpg"
-//            Glide.with(this).load(url).fitCenter().into(iv_picassos)
-        val glide = Glide.with(this).load(url)
-        glide.placeholder(R.drawable.ic_menu)
-        glide.error(R.drawable.ic_menu)
-//            glide.fitCenter()
-        glide.into(iv_picassos)
+//        GlideUtil.setGlide(this, iv_picassos)
     }
 
     private fun setPicasso() {
-
-        val url = "https://i.imgur.com/DvpvklR.jpg"
-        Picasso.get().load(url).into(iv_picassos)
-//            picasso.load(R.drawable.ic_menu).into(iv_picasso)
-//            picasso.load("file:///android_asset/picasso_test.png").into(iv_picasso)
-
+        PicassoUtil.setPicasso(iv_picassos)
     }
 
     private fun setRetrofit() {
-        val service = RetrofitUtil().setWithoutClient()
-
-//            service?.getData()?.enqueue(object : Callback<List<Repo>> {
-//                override fun onFailure(call: Call<List<Repo>>, t: Throwable) {
-//                    Logger.d(t.message.toString())
-//                }
-//
-//                override fun onResponse(
-//                    call: Call<List<Repo>>,
-//                    response: retrofit2.Response<List<Repo>>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        Logger.json(response.body().toString())
-//                        Logger.json(response.toString())
-//                    }
-//                }
-//
-//            })
+        RetrofitUtil().setWithoutClient()
     }
 
-
     private fun setList() {
+        ListViewAdapter(this,listview, btnList, object : ListViewListener {
+            override fun onClicked(position: Int) {
+                when (position) {
+                    0 -> startActivity(Intent(this@TestActivity, NotiActivity::class.java))
+                    position -> replaceFragment(fList[position -1])
+                }
+            }
+        })
     /*    val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, btnList)
         listview.adapter = adapter
-        listview.setOnItemClickListener {
-            _, _, position, _ ->
-            when (position) {
-                0 -> startActivity(Intent(this, NotiActivity::class.java))
-                position -> replaceFragment(fList[position -1])
-            }
-        }*/
+        listview.setOnItemClickListener {}
+        }
+        */
     }
 
 
@@ -208,7 +159,7 @@ class TestActivity : AppCompatActivity() {
     }
 
 
-        private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment) {
         val fm = supportFragmentManager
         val ft = fm.beginTransaction()
         ft.replace(R.id.container, fragment)
